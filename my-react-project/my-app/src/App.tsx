@@ -1,68 +1,65 @@
-import React, { useState } from 'react';
-import { Layout, Menu, Card, Form, Input, Button } from 'antd';
+import React from 'react';
+import './lab4.css';
 
-const { Header, Content, Footer } = Layout;
+interface User {
+    name: string;
+    email: string;
+    age: number;
+    address: string;
+    isActive: boolean;
+}
 
-const App = () => {
-const [form] = Form.useForm();
-const [cards, setCards] = useState([
-{ title: 'Nicolae', content: 'CR-212' },
-{ title: 'Andrei', content: 'CR-214' },
-{ title: 'Cătălin', content: 'CR-201' },
-{ title: 'Ilie', content: 'CR-215' },
-{ title: 'Marian', content: 'CR-217' },
-{ title: 'Roma', content: 'CR-211' },
+interface AdvancedUser extends User {
+    education: string;
+    skills: string[];
+}
 
-
-]);
-
-const handleSubmit = (values: { title: string; content: string }) => {
-const newCards = [...cards, values];
-setCards(newCards);
-console.log('Form values:', values);
-alert('Forma s-a adăugat cu succes!');
+const user: AdvancedUser = {
+    name: 'Varzari Nicolae',
+    email: 'varzari@gmail.com',
+    age: 21,
+    address: 'Vasile Alecsandri 12',
+    isActive: true,
+    education: 'Administrator Aplicații WEB',
+    skills: ['JavaScript', 'React', 'Node.js'],
 };
 
-return (
-<Layout>
-<Header>
-<Menu theme="dark" mode="horizontal">
-<Menu.Item key="1">Laboratorul 3</Menu.Item>
-<Menu.Item key="2">Pagina 1</Menu.Item>
-<Menu.Item key="3">Pagina 2</Menu.Item>
-</Menu>
-</Header>
-<Content style={{ padding: '50px' }}>
-<Form form={form} onFinish={handleSubmit}>
-<Form.Item
-name="title"
-rules={[{ required: true, message: 'Introduceți titlul' }]}
->
-<Input placeholder="Titlu" />
-</Form.Item>
-<Form.Item
-name="content"
-rules={[{ required: true, message: 'Introduceți contentul' }]}
->
-<Input placeholder="Content" />
-</Form.Item>
-<Form.Item>
-<Button type="primary" htmlType="submit">
-Trimite
-</Button>
-</Form.Item>
-</Form>
-<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-{cards.map(card => (
-<Card key={card.title} style={{ width: 300, margin: '20px' }}>
-<Card.Meta title={card.title} description={card.content} />
-</Card>
-))}
-</div>
-</Content>
-<Footer>Varzari Nicolae CR-212</Footer>
-</Layout>
-);
-};
+function Lab4() {
+    return (
+        <div className="container">
+            <h1 className="title">Date Personale</h1>
+            <div className="card">
+                <p>
+                    <span className="label">Name:</span>
+                    <span className="value">{user.name}</span>
+                </p>
+                <p>
+                    <span className="label">Email:</span>
+                    <span className="value">{user.email}</span>
+                </p>
+                <p>
+                    <span className="label">Age:</span>
+                    <span className="value">{user.age}</span>
+                </p>
+                <p>
+                    <span className="label">Address:</span>
+                    <span className="value">{user.address}</span>
+                </p>
+                <p>
+                    <span className="label">Active:</span>
+                    <span className="value">{user.isActive.toString()}</span>
+                </p>
+                <p>
+                    <span className="label">Education:</span>
+                    <span className="value">{user.education}</span>
+                </p>
+                <p>
+                    <span className="label">Skills:</span>
+                    <span className="value">{user.skills.join(', ')}</span>
+                </p>
+            </div>
+        </div>
+    );
+}
 
-export default App;
+export default Lab4;
