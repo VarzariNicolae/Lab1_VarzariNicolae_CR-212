@@ -8,11 +8,11 @@ function MyComponent() {
     // local state
     const [localData, setLocalData] = useState<any>({ name: '', address: '', phone: '' });
 
-    // use data from MobX store
+    // folosim datele din MobX store
     const myData = store.myData;
 
-    // update data in MobX store
-    // add new object to MobX store
+    // refresh la date
+    // adaugam un obiect nou  la MobX store
     const handleAddObject = (event: React.FormEvent<HTMLFormElement>) => {
 
         event.preventDefault();
@@ -24,14 +24,13 @@ function MyComponent() {
         setLocalData({ name: '', address: '', phone: '' });
     };
 
-    // delete object from MobX store
-// delete object from MobX store and update local state
+
+// stergem obiectul din MobX store si  facem update la  local state
     const handleDeleteObject = (index: number) => {
         store.deleteObject(index);
         setLocalData({ name: "", address: "", phone: "" });
     };
 
-    // update object in MobX store
 
     return (
 
